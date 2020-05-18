@@ -5,9 +5,9 @@ import SendForm from "./components/sendForm/SendForm";
 import {getBalance, getAddress, createNewWalletKeyPair} from "../../lib/sapi";
 import { isAddress, isPK } from "../../lib/smart";
 import { useForm } from "react-hook-form";
-import useModal from "../../util/useModal";
+import useModal from "../util/useModal";
 import Modal from "./components/modal/Modal";
-import barcode from "../../assets/images/barcode.svg";
+import barcode from "../assets/images/barcode.svg";
 import { NavLink } from "react-router-dom";
 import generatePDF from "../export-private-keys/GeneratorPDF";
 
