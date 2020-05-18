@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "right",
-    "slug": "right",
+    "name": "SmartCashMobile",
+    "slug": "SmartCashMobile",
     "platforms": [
       "ios",
       "android",

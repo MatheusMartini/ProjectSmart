@@ -4,9 +4,8 @@ import * as React from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 
 import useCachedResources from './hooks/useCachedResources';
-import BottomTabNavigator from './navigation/BottomTabNavigator';
 import LinkingConfiguration from './navigation/LinkingConfiguration';
-
+import Homescreen from './screens/HomeScreen';
 const Stack = createStackNavigator();
 
 export default function App(props) {
@@ -20,7 +19,7 @@ export default function App(props) {
         {Platform.OS === 'ios' && <StatusBar barStyle="dark-content" />}
         <NavigationContainer linking={LinkingConfiguration}>
           <Stack.Navigator>
-            <Stack.Screen name="Root" component={BottomTabNavigator} />
+            <Stack.Screen name="SmartCash Mobile" component={Homescreen} />
           </Stack.Navigator>
         </NavigationContainer>
       </View>
