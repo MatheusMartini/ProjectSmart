@@ -34,12 +34,14 @@ HomeScreen.navigationOptions = {
 function DevelopmentModeNotice() {
   if (__DEV__) {
     return (
+      //app in developement
       <Text style={styles.loading}>
         Development mode is enabled: your app will be slower but you can use useful development
         tools.
       </Text>
     );
   } else {
+    //app in prodution
     return (
       <Text style={styles.loading}>
         Loading...
