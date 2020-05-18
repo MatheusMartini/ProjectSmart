@@ -9,17 +9,17 @@ export default function Header() {
           __DEV__
             ? require('../../assets/images/logo.png')
             : require('../../assets/images/logo.png')
-            } style={styles.Header}
+            } style={styles.header}
           />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  Header: {
-    height: 100,
+  header: {
+    height: 80,
     resizeMode: 'contain',
-    marginTop: 5,
+    marginTop:10
   },
   container:{
     backgroundColor:'#f1f1f1',
