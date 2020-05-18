@@ -6,6 +6,9 @@ import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import useCachedResources from './hooks/useCachedResources';
 import LinkingConfiguration from './navigation/LinkingConfiguration';
 import Homescreen from './screens/HomeScreen';
+
+import Header from './components/header//Header';
+
 const Stack = createStackNavigator();
 
 export default function App(props) {
@@ -19,7 +22,15 @@ export default function App(props) {
         {Platform.OS === 'ios' && <StatusBar barStyle="dark-content" />}
         <NavigationContainer linking={LinkingConfiguration}>
           <Stack.Navigator>
-            <Stack.Screen name="SmartCash Mobile" component={Homescreen} />
+            <Stack.Screen name= ' '  
+              style={styles.Screen}
+              component={Homescreen} 
+              options={{
+                headerBackground: () => (
+                  <Header/>
+                ),
+              }}
+            />
           </Stack.Navigator>
         </NavigationContainer>
       </View>
@@ -32,4 +43,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
+  Screen: {
+
+  }
 });

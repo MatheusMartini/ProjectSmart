@@ -4,7 +4,6 @@ import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react
 import { ScrollView } from 'react-native-gesture-handler';
 
 import { MonoText } from '../components/StyledText';
-
 export default function HomeScreen() {
   return (
     <View style={styles.container}>
@@ -23,7 +22,6 @@ export default function HomeScreen() {
         <View style={styles.getStartedContainer}>
           <DevelopmentModeNotice />
         </View>
-
       </ScrollView>
     </View>
   );
@@ -35,42 +33,31 @@ HomeScreen.navigationOptions = {
 
 function DevelopmentModeNotice() {
   if (__DEV__) {
-    const learnMoreButton = (
-      <Text onPress={handleLearnMorePress} style={styles.helpLinkText}>
-        Learn more
-      </Text>
-    );
-
     return (
-      <Text style={styles.developmentModeText}>
+      <Text style={styles.loading}>
         Development mode is enabled: your app will be slower but you can use useful development
-        tools. {learnMoreButton}
+        tools.
       </Text>
     );
   } else {
     return (
-      <Text style={styles.developmentModeText}>
-        You are not in development mode: your app will run at full speed.
+      <Text style={styles.loading}>
+        Loading...
       </Text>
     );
   }
 }
 
-function handleLearnMorePress() {
-  WebBrowser.openBrowserAsync('https://docs.expo.io/versions/latest/workflow/development-mode/');
-}
-
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#f1f1f1',
   },
-  developmentModeText: {
+  loading: {
     marginBottom: 20,
     color: 'rgba(0,0,0,0.4)',
     fontSize: 14,
-    lineHeight: 19,
+    lineHeight: 20,
     textAlign: 'center',
   },
   contentContainer: {
