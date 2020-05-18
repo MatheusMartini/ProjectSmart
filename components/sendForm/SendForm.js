@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { createAndSendRawTransaction, getFee } from "../../../../lib/sapi";
-import { isAddress, isPK } from "../../../../lib/smart";
+import { createAndSendRawTransaction, getFee } from "../../lib/sapi";
+import { isAddress, isPK } from "../../lib/smart";
 import { useForm } from "react-hook-form";
-import useModal from "../../../../util/useModal";
-import barcode from "../../../../assets/images/barcode.svg";
+import useModal from "../../util/..";
+import barcode from "../../assets/images/barcode.svg";
 
 import Modal from "../modal/Modal";
 import styles from './SendFormStyles';
