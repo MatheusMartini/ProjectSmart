@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     position: 'fixed',
     top: '0',
     left: '0',
-    z-index: '1040',
+    zIndex: '1040',
     width: '100vw',
     height: '100vh',
     backgroundColor: '#000',
@@ -97,15 +97,15 @@ const styles = StyleSheet.create({
     zIndex: '1050',
     width: '100%',
     height: '100%',
-    overflowX: hidden,
-    overflowy: auto,
+    overflowX: 'hidden',
+    overflowy: 'auto',
     outline: '0',
   },
   modal: {
     zIndex: '100',
     backround: '#fff',
-    position: relative;
-    margin: '1.75rem' 'auto',
+    position: 'relative',
+    margin: '1.75rem',
     borderRadius: '3px',
     maxWidth: '500px',
     padding: '2rem',
@@ -117,16 +117,16 @@ const styles = StyleSheet.create({
   },
   modalBody: {
     overflow: 'hidden',
-    borderRadius: 5px,
+    borderRadius: '5px',
   },
   modalCloseButton: {
-    fontSize: 1.4rem,
-    fontWeight: 700,
-    lineHeight: 1,
+    fontSize: '1.4rem',
+    fontWeight: '700',
+    lineHeight: '1',
     color: '#000',
-    opacity: 0.3,
-    cursor: pointer,
-    border: none,
+    opacity: '0.3',
+    cursor: 'pointer',
+    border: 'none',
   }
 });
 export default Modal;
