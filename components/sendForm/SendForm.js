@@ -7,7 +7,7 @@ import barcode from "../../../../assets/images/barcode.svg";
 
 import Modal from "../modal/Modal";
 import styles from './SendFormStyles';
-import { View, Button } from 'react-native';
+import { View, Button, Text } from 'react-native';
 
 
 function Send({ address, balance, privateKey, withdraw }) {
