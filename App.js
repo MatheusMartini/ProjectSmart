@@ -8,7 +8,6 @@ import LinkingConfiguration from './navigation/LinkingConfiguration';
 import Homescreen from './screens/HomeScreen';
 
 import Header from './components/header/Header';
-
 const Stack = createStackNavigator();
 
 export default function App(props) {
@@ -31,7 +30,7 @@ export default function App(props) {
                 ),
               }}
             />
-          </Stack.Navigator>
+          </Stack.Navigator> 
         </NavigationContainer>
       </View>
     );

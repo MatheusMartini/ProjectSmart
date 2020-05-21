@@ -1,14 +1,50 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import {
-  Alert,
   Modal,
   StyleSheet,
   Text,
   TouchableHighlight,
-  View
+  View, 
+  Image
 } from "react-native";
+import Cam from '../Cam';
+class App extends Component {
+  constructor(props) {
+    const isShowing ='';
+    const hide = '';
+    const callback ='';
+    super(props);
 
-class modal extends Component { 
+    const handleScan = (data) => {
+      if (data) {
+        hide();
+        const obj = {
+          address: getQrCode(data),
+          amount: getAmountFromQrCode(data),
+        };
+        callback(obj);
+      }
+    };
+    const getQrCode = (content) => {
+      var qrCode = content;
+  
+      if (qrCode.includes(":")) {
+        qrCode = qrCode.substring(qrCode.indexOf(":") + 1);
+      }
+  
+      if (qrCode.includes("?")) {
+        qrCode = qrCode.substring(0, qrCode.indexOf("?"));
+      }
+  
+      return qrCode;
+    };
+    const getAmountFromQrCode = (content) => {
+      const results = new RegExp("[?&]amount=([^&#]*)").exec(content);
+      return results?.length ? results[1] : null;
+    };
+    const handleError = (err) => {console.error(err);}
+  }
+  
   state = {
     modalVisible: false
   };
@@ -27,28 +63,29 @@ class modal extends Component {
           visible={modalVisible}
         >
           <View style={styles.centeredView}>
-            <View style={styles.modalView}>
-              <Text style={styles.modalText}>Hello World!</Text>
-
+            <View>              
+              <Cam/>
               <TouchableHighlight
                 style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
                 onPress={() => {
                   this.setModalVisible(!modalVisible);
                 }}
               >
-                <Text style={styles.textStyle}>Hide Modal</Text>
+                <Text style={styles.textStyle}>Close</Text>
               </TouchableHighlight>
             </View>
           </View>
         </Modal>
 
         <TouchableHighlight
-          style={styles.openButton}
           onPress={() => {
             this.setModalVisible(true);
           }}
         >
-          <Text style={styles.textStyle}>Show Modal</Text>
+          <Image
+            style={styles.qrcode}
+            source={require('../../assets/images/qrcode.png')}
+            />
         </TouchableHighlight>
       </View>
     );
@@ -60,13 +97,18 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 22
+  },
+  qrcode: {
+    padding: 15,
+    width: 30,
+    height: 30,
   },
   modalView: {
     margin: 20,
-    backgroundColor: "#fff",
+    backgroundColor: "white",
     borderRadius: 20,
-    padding: 150,
+    padding: 50,
+    alignItems: "center",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -74,19 +116,23 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-    elevation: 5,
+    elevation: 5
   },
   openButton: {
-    backgroundColor: "#F194FF",
+    backgroundColor: "#f1f1f1",
     borderRadius: 20,
     padding: 10,
     elevation: 2
   },
   textStyle: {
-    color: "#fff",
+    color: "white",
     fontWeight: "bold",
+    textAlign: "center"
   },
-
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center"
+  }
 });
 
-export default modal;
+export default App;

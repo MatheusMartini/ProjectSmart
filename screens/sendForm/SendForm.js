@@ -2,17 +2,13 @@ import * as React from 'react';
 import { StyleSheet,
   Text,
   View,
-  Button,
   TextInput,
-  Image,  
   TouchableHighlight,
-  Modal,
 } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import modal from '../modal/Modal';
+import Modal from '../modal/Modal';
 
 export default function HomeScreen() {
-  
   return (
     <View>
       <ScrollView style={styles.container}>
@@ -26,10 +22,9 @@ export default function HomeScreen() {
                     this.setModalVisible(!modalVisible);
                   }}
                   >
-                <Image
-                  style={styles.qrcode}
-                  source={require('../../assets/images/qrcode.png')}
-                />
+                  <View style={styles.qr}>
+                    <Modal/>
+                  </View>                
                 </TouchableHighlight>
 
             </View>
@@ -61,12 +56,8 @@ export default function HomeScreen() {
         flexDirection: 'row',
         justifyContent: 'space-between'
     },  
-    qrcode: {
-      padding: 15,
-      width: 30,
-      height: 30,
-      marginRight:10, 
-      marginTop:10,
+    qr: {
+      backgroundColor: '#fff'
     },
     card: {
       marginTop: 10,
