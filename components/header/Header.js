@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
   header: {
     height: 80,
     resizeMode: 'contain',
-    marginTop:10
+    marginTop:10,
   },
   container:{
     backgroundColor:'#f1f1f1',
