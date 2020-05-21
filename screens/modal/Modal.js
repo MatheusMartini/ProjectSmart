@@ -1,81 +1,92 @@
-import React from "react";
-import QrReader from "react-qr-reader";
-import style from "./Modal.module.css";
+import React, { Component } from "react";
+import {
+  Alert,
+  Modal,
+  StyleSheet,
+  Text,
+  TouchableHighlight,
+  View
+} from "react-native";
 
-const Modal = ({ isShowing, hide, callback }) => {
-  const handleScan = (data) => {
-    if (data) {
-      hide();
-
-      const obj = {
-        address: getQrCode(data),
-        amount: getAmountFromQrCode(data),
-      };
-
-      callback(obj);
-    }
+class modal extends Component { 
+  state = {
+    modalVisible: false
   };
 
-  const getQrCode = (content) => {
-    var qrCode = content;
+  setModalVisible = (visible) => {
+    this.setState({ modalVisible: visible });
+  }
 
-    if (qrCode.includes(":")) {
-      qrCode = qrCode.substring(qrCode.indexOf(":") + 1);
-    }
+  render() {
+    const { modalVisible } = this.state;
+    return (
+      <View style={styles.centeredView}>
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible}
+        >
+          <View style={styles.centeredView}>
+            <View style={styles.modalView}>
+              <Text style={styles.modalText}>Hello World!</Text>
 
-    if (qrCode.includes("?")) {
-      qrCode = qrCode.substring(0, qrCode.indexOf("?"));
-    }
+              <TouchableHighlight
+                style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
+                onPress={() => {
+                  this.setModalVisible(!modalVisible);
+                }}
+              >
+                <Text style={styles.textStyle}>Hide Modal</Text>
+              </TouchableHighlight>
+            </View>
+          </View>
+        </Modal>
 
-    return qrCode;
-  };
+        <TouchableHighlight
+          style={styles.openButton}
+          onPress={() => {
+            this.setModalVisible(true);
+          }}
+        >
+          <Text style={styles.textStyle}>Show Modal</Text>
+        </TouchableHighlight>
+      </View>
+    );
+  }
+}
 
-  const getAmountFromQrCode = (content) => {
-    const results = new RegExp("[?&]amount=([^&#]*)").exec(content);
-    return results?.length ? results[1] : null;
-  };
+const styles = StyleSheet.create({
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "#fff",
+    borderRadius: 20,
+    padding: 150,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  openButton: {
+    backgroundColor: "#F194FF",
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2
+  },
+  textStyle: {
+    color: "#fff",
+    fontWeight: "bold",
+  },
 
-  const handleError = (err) => {
-    console.error(err);
-  };
+});
 
-  return isShowing
-    ? ReactDOM.createPortal(
-        <React.Fragment>
-          <div className={style["modal-overlay"]} />
-          <div
-            className={style["modal-wrapper"]}
-            aria-modal
-            aria-hidden
-            tabIndex={-1}
-            role="dialog"
-          >
-            <div className={style["modal"]}>
-              <div className={style["modal-header"]}>
-                <button
-                  type="button"
-                  className={style["modal-close-button"]}
-                  data-dismiss="modal"
-                  aria-label="Close"
-                  onClick={hide}
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div className={style["modal-body"]}>
-                <QrReader
-                  delay={300}
-                  onError={handleError}
-                  onScan={handleScan}
-                  style={{ width: "100%" }}
-                />
-              </div>
-            </div>
-          </div>
-        </React.Fragment>,
-        document.body
-      )
-    : null;
-};
-
-export default Modal;
+export default modal;

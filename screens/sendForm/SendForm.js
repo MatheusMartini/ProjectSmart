@@ -1,8 +1,18 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, Button, TextInput, Image } from 'react-native';
+import { StyleSheet,
+  Text,
+  View,
+  Button,
+  TextInput,
+  Image,  
+  TouchableHighlight,
+  Modal,
+} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import modal from '../modal/Modal';
 
 export default function HomeScreen() {
+  
   return (
     <View>
       <ScrollView style={styles.container}>
@@ -10,27 +20,30 @@ export default function HomeScreen() {
     
             <View style={styles.adress}>
                 <Text style={styles.adress}>Your Address or Private Key</Text>
+                
+                <TouchableHighlight
+                  onPress={() => {
+                    this.setModalVisible(!modalVisible);
+                  }}
+                  >
                 <Image
                   style={styles.qrcode}
                   source={require('../../assets/images/qrcode.png')}
-  
                 />
+                </TouchableHighlight>
+
             </View>
                
-            <TextInput style={styles.text} placeholder="________________________________________________">
-
+            <TextInput style={styles.text}
+             placeholder="________________________________________________">
             </TextInput>
-            
+
         </View>
       </ScrollView>
     </View>
   );
 }
 
-HomeScreen.navigationOptions = {
-    header: null,
-  };
-  
   const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -66,7 +79,6 @@ HomeScreen.navigationOptions = {
       shadowRadius: 5,
       backgroundColor:'#fff',
       padding:20,
-      elevation:5 
     },
   });
   
