@@ -7,7 +7,7 @@ import useCachedResources from './hooks/useCachedResources';
 import LinkingConfiguration from './navigation/LinkingConfiguration';
 import Homescreen from './screens/HomeScreen';
 
-import Header from './components/header/Header';
+import Header from './components/Header';
 const Stack = createStackNavigator();
 
 export default function App(props) {

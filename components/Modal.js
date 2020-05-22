@@ -7,7 +7,8 @@ import {
   View, 
   Image
 } from "react-native";
-import Cam from '../Cam';
+import Cam from './Cam';
+
 class App extends Component {
   constructor(props) {
     const isShowing ='';
@@ -84,7 +85,7 @@ class App extends Component {
         >
           <Image
             style={styles.qrcode}
-            source={require('../../assets/images/qrcode.png')}
+            source={require('../assets/images/qrcode.png')}
             />
         </TouchableHighlight>
       </View>

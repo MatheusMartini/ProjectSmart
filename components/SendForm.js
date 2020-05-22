@@ -6,7 +6,7 @@ import { StyleSheet,
   TouchableHighlight,
 } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import Modal from '../modal/Modal';
+import Modal from './Modal';
 
 export default function HomeScreen() {
   return (

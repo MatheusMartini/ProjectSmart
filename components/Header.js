@@ -7,8 +7,8 @@ export default function Header() {
       <Image
         source={
           __DEV__
-            ? require('../../assets/images/logo.png')
-            : require('../../assets/images/logo.png')
+            ? require('../assets/images/logo.png')
+            : require('../assets/images/logo.png')
             } style={styles.header}
           />
     </View>
