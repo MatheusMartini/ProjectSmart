@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Button } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import Send from '../components/SendForm';
+
 export default function HomeScreen() {
   return (
     <View style={styles.container}>
