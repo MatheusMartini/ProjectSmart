@@ -20,6 +20,8 @@ const styles = StyleSheet.create({
     height: 80,
     resizeMode: 'contain',
     marginTop:10,
+    marginLeft: 15, 
+    alignContent: 'space-around'
   },
   container:{
     backgroundColor:'#f1f1f1',
