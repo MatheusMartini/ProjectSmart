@@ -1,13 +1,14 @@
 import * as React from 'react';
-import { StyleSheet, View, Button } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import { StyleSheet, View, Button, Platform, StatusBar } from 'react-native';
+import { ScrollView,  } from 'react-native-gesture-handler';
 import Send from '../components/SendForm';
 
 export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-        
+        {Platform.OS === 'ios' && <StatusBar barStyle="dark-content" />}
+
         <View style={styles.welcomeContainer}>
           <Send/>
         </View>

@@ -1,16 +1,93 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet,
   Text,
   View,
   TextInput,
   TouchableHighlight,
+  Button,
+  KeyboardAvoidingView
 } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import Modal from './Modal';
 
-export default function HomeScreen() {
-  return (
+function ShowSend(){
+  return(
     <View>
+    
+      <View style={styles.contentCard}>
+
+        <View style={styles.adress}>
+          <Text>Adress to Send</Text>
+          <TouchableHighlight
+            onPress={() => {
+              this.setModalVisible(!modalVisible);
+            }}
+            >
+            <View style={styles.qr}>
+              <Modal/>
+            </View>                
+          </TouchableHighlight>
+        </View>
+
+        <TextInput 
+          style={styles.text}
+
+            placeholder="________________________________________________">
+        </TextInput>
+        
+      </View>
+
+      <View style={styles.contentCard}>
+        <Text>Amount to Send</Text>
+        <TextInput 
+          style={styles.text}
+
+            placeholder="________________________________________________">
+        </TextInput>
+      </View>
+
+      <View style={styles.contentCard}>
+
+        <View style={styles.adress}>
+          <Text>Your private Kay</Text>
+
+          <TouchableHighlight
+            onPress={() => {
+              this.setModalVisible(!modalVisible);
+            }}
+            >
+            <View style={styles.qr}>
+              <Modal/>
+            </View>                
+          </TouchableHighlight>
+        </View>
+
+        <TextInput 
+          style={styles.text}
+
+            placeholder="________________________________________________">
+        </TextInput>
+        
+      </View>
+
+      <View style={styles.Button}>
+        <Button title={'Send'} onPress={() => {}} />
+      </View>
+
+    </View>
+  );
+}
+function ShowBalance (){
+  return(
+    <View style={styles.Balance}>
+      <Text>Your Balance: </Text>
+    </View>
+  );
+}
+export default function HomeScreen() {
+
+   return (
+    <KeyboardAvoidingView behavior='position'>
       <ScrollView style={styles.container}>
         <View style={styles.card}>
     
@@ -29,13 +106,26 @@ export default function HomeScreen() {
 
             </View>
                
-            <TextInput style={styles.text}
+            <TextInput 
+              style={styles.text}
+             
              placeholder="________________________________________________">
+               
             </TextInput>
 
         </View>
+        
+        <View>
+          <ShowBalance/>
+        
+        <View style={styles.contentCard} style={styles.card } >
+          <ShowSend/> 
+        </View>
+
+        </View>
+
       </ScrollView>
-    </View>
+    </KeyboardAvoidingView>
   );
 }
 
@@ -44,12 +134,22 @@ export default function HomeScreen() {
       flex: 1,
       backgroundColor: '#f1f1f1',
     },
+    Button:{
+      
+      borderRadius: 50,
+
+    },
     text: {
       padding: 10,
       color: 'rgba(0,0,0,0.6)',
       fontSize: 15,
       lineHeight:20,
       
+    },
+    Balance:{
+      marginLeft:10,
+      marginTop:1,
+      marginBottom:5
     },
     adress: {
         marginTop:'2%',
@@ -71,5 +171,13 @@ export default function HomeScreen() {
       backgroundColor:'#fff',
       padding:20,
     },
+    contentCard:{
+      marginBottom: 20,
+      backgroundColor:'#fff',
+      padding:10,
+      shadowColor: 'black',
+      shadowOffset: { width: -1, height: 10},
+      shadowOpacity: 0.09,
+    }
   });
   
