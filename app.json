@@ -4,12 +4,11 @@
     "slug": "SmartCashMobile",
     "platforms": [
       "ios",
-      "android",
-      "web"
+      "android"
     ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/favicon.ico",
     "scheme": "myapp",
     "splash": {
       "image": "./assets/images/splash.png",
@@ -24,9 +23,6 @@
     ],
     "ios": {
       "supportsTablet": true
-    },
-    "web": {
-      "favicon": "./assets/images/favicon.png"
     }
   }
 }
