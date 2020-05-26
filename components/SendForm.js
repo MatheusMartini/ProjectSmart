@@ -13,7 +13,6 @@ import Modal from './Modal';
 function ShowSend(){
   return(
     <View>
-    
       <View style={styles.contentCard}>
 
         <View style={styles.adress}>
@@ -64,7 +63,7 @@ function ShowSend(){
 
         <TextInput 
           style={styles.text}
-
+ 
             placeholder="________________________________________________">
         </TextInput>
         
@@ -79,48 +78,61 @@ function ShowSend(){
 }
 function ShowBalance (){
   return(
-    <View style={styles.Balance}>
-      <Text>Your Balance: </Text>
-    </View>
+    <Text>Your Balance: </Text>
   );
 }
+
+function ShowTransactions(){
+  return(
+    <Text style={styles.Transactions}>Show Transactions </Text>
+  );
+}
+
+
 export default function HomeScreen() {
 
    return (
     <KeyboardAvoidingView behavior='position'>
       <ScrollView style={styles.container}>
         <View style={styles.card}>
-    
-            <View style={styles.adress}>
-                <Text style={styles.adress}>Your Address or Private Key</Text>
+          <View style={styles.adress}>
+            <Text style={styles.adress}>Your Address or Private Key</Text>
+              
+              <TouchableHighlight
+                onPress={() => {
+                  this.setModalVisible(!modalVisible);
+                }}
+                >
+              <View style={styles.qr}>
+                <Modal/>
                 
-                <TouchableHighlight
-                  onPress={() => {
-                    this.setModalVisible(!modalVisible);
-                  }}
-                  >
-                  <View style={styles.qr}>
-                    <Modal/>
-                  </View>                
-                </TouchableHighlight>
+              </View>                
+              </TouchableHighlight>
 
-            </View>
+          </View>
                
             <TextInput 
               style={styles.text}
-             
-             placeholder="________________________________________________">
+              placeholder="________________________________________________">
                
             </TextInput>
-
         </View>
         
         <View>
-          <ShowBalance/>
-        
-        <View style={styles.contentCard} style={styles.card } >
-          <ShowSend/> 
-        </View>
+
+          <View style={styles.ShowContent}>
+            
+            <ShowBalance/>
+
+            <TouchableHighlight onPress={() => {}}>
+              <ShowTransactions/>
+            </TouchableHighlight>
+           
+          </View>
+          
+          <View style={styles.contentCard} style={styles.card } >
+            <ShowSend/> 
+          </View>
 
         </View>
 
@@ -134,17 +146,23 @@ export default function HomeScreen() {
       flex: 1,
       backgroundColor: '#f1f1f1',
     },
-    Button:{
-      
-      borderRadius: 50,
-
+    ShowContent:{
+      flexDirection: 'row',
+      justifyContent: 'space-around',
+      padding:5
+    },
+    Transactions:{
+      backgroundColor:'#f1f1f1',
+      shadowOffset: { width: -1, height:5} ,
+      shadowOpacity: 0.09,
+      padding:10,
+      marginTop:-10
     },
     text: {
       padding: 10,
       color: 'rgba(0,0,0,0.6)',
       fontSize: 15,
       lineHeight:20,
-      
     },
     Balance:{
       marginLeft:10,
@@ -158,6 +176,9 @@ export default function HomeScreen() {
     },  
     qr: {
       backgroundColor: '#fff'
+    },
+    Button:{
+      borderRadius: 50,
     },
     card: {
       marginTop: 10,
