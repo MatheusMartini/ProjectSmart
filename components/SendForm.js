@@ -15,12 +15,12 @@ import { createAndSendRawTransaction, getFee } from "../lib/sapi";
 import { isAddress, isPK } from "../lib/smart";
 import useModal from "../util/useModal";
 import barcode from "../assets/images/barcode.svg";
+import { WebView, Linking } from 'react-native-webview';
 
 
-function ShowSend(){
+function ShowSend({  balance, privateKey }){
   const { register, setValue, handleSubmit, errors } = useForm();
   const onSubmit = data => Alert.alert('Form Data', data);
-  const url =`https://insight.smartcash.cc/tx/${txid}`;
 
   React.useEffect(() => { 
     register({ name: 'address'}, { required: true });
@@ -128,7 +128,7 @@ function ShowSend(){
       <View style={styles.contentCard}>
 
         <View style={styles.adress}>
-          <Text>Your private Kay</Text>
+          <Text>Your private Key</Text>
 
           <TouchableHighlight
             onPress={() => {
@@ -188,13 +188,13 @@ function ShowTransactions(){
   );
 }
 
-
-export default function HomeScreen({ address, balance, privateKey, withdraw }) {
+export default function SendForm({ address, balance, privateKey, withdraw }) {
     const { isShowing, toggle } = useModal(false);
     const [txid, setTxId] = useState();
     const [fee, setFee] = useState();
     const [loading, setLoading] = useState(false);
     const [type, setType] = useState();
+    const url =`https://insight.smartcash.cc/tx/${txid}`;
 
     const {
       register,
@@ -210,9 +210,7 @@ export default function HomeScreen({ address, balance, privateKey, withdraw }) {
       } });
 
       React.useEffect(() => { 
-        register({ name: 'addressOrPrivateKey'}, { required: true });
-
-        
+        register({ name: 'addressOrPrivateKey'}, { required: true });     
       }, [register]);
 
       const onSubmit = (data) => {
@@ -236,24 +234,23 @@ export default function HomeScreen({ address, balance, privateKey, withdraw }) {
         });
       };
 
-      if (txid) {
+      if (setTxId) {
         return (
-          <View className={style.amountWasSent}>
+          <View >
             <Text>Amount has been sent</Text>
             <WebView
-                  ref={(ref) => { this.webview = ref; }}
-                  source={{ url }}
-                  onNavigationStateChange={(event) => {
-                    if (event.url !== uri) {
-                    this.webview.stopLoading();
-                    Linking.openURL(event.url);
-                    }}
+                ref={(ref) => { webview = ref; }}
+                source={{ url }}
+                onNavigationStateChange={(event) => {
+                  if (event.url !== url) {
+                  this.webview.stopLoading();
+                  Linking.openURL(event.url);
+                  }}
                 }>
-                {txid}
-                <Text>(click to view details)</Text>
-                </WebView>
-  
-            <Button onClick={() => window.location.reload()}>Refresh Page</Button>
+              {txid}
+              <Text>(click to view details)</Text>
+              </WebView>
+            <Button title="Refress"onClick={() => {}}>Refresh Page</Button>
           </View>
         );
       }
@@ -265,7 +262,6 @@ export default function HomeScreen({ address, balance, privateKey, withdraw }) {
         className="formGroup"
         autoComplete="off"
       >
-
 
     <KeyboardAvoidingView behavior='position'>
       <ScrollView style={styles.container}>
@@ -291,7 +287,7 @@ export default function HomeScreen({ address, balance, privateKey, withdraw }) {
                 autoComplete="off"
                 ref={register({
                   required: true,
-                  validate: AddressPKValidation,
+                  //validate: AddressPKValidation,
                   })}
                   onInput={() => triggerValidation("addressTo")}
               placeholder="________________________________________________">
