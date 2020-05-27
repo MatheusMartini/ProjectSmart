@@ -60,73 +60,67 @@ function Send() {
   }
   const url = `https://insight.smartcash.cc/address/${address}`;
   return (
-    <View>
-
-        <View style={styles.container}>
-          <View>
-            <View>
-              <View>
-                <Text>Your Address or Private Key</Text>
-                <TextInput
-                  type="text"
+    <View style={styles.container}>
+      <View>
+        <View >
+          <View style={styles.card} >
+    
+            <View style={styles.adress}>
+              
+              <TextInput
+                style={styles.text}
+                placeholder="Your Address or PrivateKey"
+                  title="text"
                   onChangeText={text => setValue('address', text, true)}
                   autoComplete="off"
                   ref={register({
                     required: true,
                     validate: AddressPKValidation,
                   })}
-                  onInput={() => triggerValidation("addressTo")}
-                />
-              </View>
-              <Button title="modalButton" onClick={toggle}>
-
-              </Button>
+                onInput={() => triggerValidation("addressTo")}
+              />
               <Modal
                 isShowing={isShowing}
                 hide={toggle}
                 callback={(obj) =>
                   obj.address && setValue("address", obj.address, true)
                 }
-              />
+              /> 
+              </View>
+
               {errors.address && (
-                <span className="error-message">{errors.address.message}</span>
+                <Text className="error-message">{errors.address.message}</Text>
               )}
-            </View>
+                        
           </View>
         </View>
+      </View>
 
         {formState.isValid ? (
          
           <View>
-            <View style={styles.container}>
+            <View >
               <View>
                 <Text>Your Balance: {balance}</Text>
                 
-                <WebView
-                  ref={(ref) => { this.webview = ref; }}
-                  source={{ url }}
-                  onNavigationStateChange={(event) => {
-                    if (event.url !== uri) {
-                    this.webview.stopLoading();
-                    Linking.openURL(event.url);
-                    }}
-                }>
-                <Text>Show Transactions</Text>
-                </WebView>
               </View>
             </View>
 
             <View style={styles.container}>
               <View >
-                <SendForm address={address} balance={balance} privateKey={privateKey}/>
+                
               </View>
             </View>
 
           </View>
         ) : null}
+        
     </View>
+  
   );
 }
+export default Send;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -135,7 +129,7 @@ const styles = StyleSheet.create({
   ShowContent:{
     flexDirection: 'row',
     justifyContent: 'space-around',
-    padding:5
+    padding:5,
   },
   Transactions:{
     backgroundColor:'#f1f1f1',
@@ -158,7 +152,7 @@ const styles = StyleSheet.create({
   adress: {
       marginTop:'2%',
       flexDirection: 'row',
-      justifyContent: 'space-between'
+      justifyContent: 'space-between',
   },  
   qr: {
     backgroundColor: '#fff'
@@ -188,4 +182,3 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Send;
